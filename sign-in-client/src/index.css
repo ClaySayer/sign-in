@@ -1,0 +1,44 @@
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+span,
+i,
+ul,
+li {
+  margin: 0;
+  ul {
+    list-style-type: none;
+  }
+
+  padding: 0;
+}
+
+body {
+  font-family: 'Century Gothic', ' sans-serif';
+}
+
+#root {
+  background-color: aliceblue;
+}
+
+ul {
+  list-style-type: none;
+}

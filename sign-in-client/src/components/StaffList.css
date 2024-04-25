@@ -1,0 +1,35 @@
+.staff-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 10px;
+}
+
+.staff-list-item {
+  flex: 0 1 10%;
+  background-color: white;
+  margin: 5px;
+  min-height: 80px;
+  border-radius: 10px;
+}
+
+.staff-list-item > .staff-button {
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  display: block;
+  padding: 5px;
+}
+.staff-list-item > .staff-button:focus {
+  border-radius: 10px;
+  border: 1px solid blue;
+  user-select: none;
+}
+
+.staff-list-item > .staff-button:hover {
+  background-color: lightcyan;
+}
+
+.signed-in {
+  background-color: lemonchiffon;
+}
