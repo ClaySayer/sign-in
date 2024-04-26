@@ -29,7 +29,7 @@ let socket;
 const delayedActions = [];
 
 export const createSocket = store => {
-  socket = io('ws://localhost:3005', { transports: ['websocket'] });
+  socket = io('localhost:3005', { transports: ['websocket'] });
   socket.on('connect', () => {
     store.dispatch(requestStaffAction());
   });

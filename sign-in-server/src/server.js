@@ -46,19 +46,9 @@ const clientActions = connection => (dispatch, getState) => {
   }
 };
 
-function unsubscribeDisconnectedObservers(socket) {
-  observers = observers.reduce((acc, observer) => {
-    if (socket.id === observer.socketId) {
-      observer.unsubscribe();
-      return acc;
-    }
-    return [...acc, observer];
-  }, []);
-}
-
 export const start = (port, store) => {
   const httpServer = createServer();
-  const io = new Server(httpServer, { transports: ['websocket'] });
+  const io = new Server(httpServer);
   io.on('connection', socket => {
     observers.push({
       unsubscribe: observeStore(store, selectStaff, state => {
@@ -71,7 +61,17 @@ export const start = (port, store) => {
     socket.on('action', action => {
       store.dispatch(clientActions({ action }));
     });
-    socket.on('disconnect', unsubscribeDisconnectedObservers(socket));
+    socket.on(
+      'disconnect',
+      () =>
+        (observers = observers.reduce((acc, observer) => {
+          if (socket.id === observer.socketId) {
+            observer.unsubscribe();
+            return acc;
+          }
+          return [...acc, observer];
+        }, [])),
+    );
   });
   httpServer.listen(port, () => {
     console.log(`Listening on PORT: ${port}`);
